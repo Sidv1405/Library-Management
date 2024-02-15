@@ -16,7 +16,7 @@
             android:name=".View.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".View.WelcomeScreenActivity"
+            android:name=".View.WelcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
