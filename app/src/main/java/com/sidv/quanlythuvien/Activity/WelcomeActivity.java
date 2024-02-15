@@ -1,4 +1,4 @@
-package com.sidv.quanlythuvien.View;
+package com.sidv.quanlythuvien.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
