@@ -1,4 +1,4 @@
-package com.example.pnlib.model;
+package com.sidv.quanlythuvien.DTO;
 
 public class Sach {
     private int MASACH;

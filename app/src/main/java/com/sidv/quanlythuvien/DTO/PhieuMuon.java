@@ -1,4 +1,4 @@
-package com.example.pnlib.model;
+package com.sidv.quanlythuvien.DTO;
 
 import java.util.Date;
 
