@@ -1,8 +1,10 @@
-package com.sidv.quanlythuvien;
+package com.sidv.quanlythuvien.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.sidv.quanlythuvien.R;
 
 public class MainActivity extends AppCompatActivity {
 
