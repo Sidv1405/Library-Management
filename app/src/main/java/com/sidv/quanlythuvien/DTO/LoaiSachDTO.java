@@ -1,37 +1,39 @@
 package com.sidv.quanlythuvien.DTO;
 
 public class LoaiSachDTO {
-    private int MALOAI;
-    private String TENLOAI;
+    private int maLoai;
+    private String tenLoai;
 
-
-    public LoaiSachDTO() {
-        this.MALOAI = MALOAI;
-        this.TENLOAI = TENLOAI;
-    }
-
-    public LoaiSachDTO(String TENLOAI) {
-        this.TENLOAI = TENLOAI;
-    }
-
-    public int getMALOAI() {
-        return MALOAI;
-    }
-
-    public void setMALOAI(int MALOAI) {
-        this.MALOAI = MALOAI;
-    }
-
-    public String getTENLOAI() {
-        return TENLOAI;
-    }
-
-    public void setTENLOAI(String TENLOAI) {
-        this.TENLOAI = TENLOAI;
-    }
 
     @Override
     public String toString() {
-        return MALOAI + "|" + TENLOAI;
+        return "LoaiSachDTO{" +
+                "maLoai=" + maLoai +
+                ", tenLoai='" + tenLoai + '\'' +
+                '}';
+    }
+
+    public int getMaLoai() {
+        return maLoai;
+    }
+
+    public void setMaLoai(int maLoai) {
+        this.maLoai = maLoai;
+    }
+
+    public String getTenLoai() {
+        return tenLoai;
+    }
+
+    public void setTenLoai(String tenLoai) {
+        this.tenLoai = tenLoai;
+    }
+
+    public LoaiSachDTO(int maLoai, String tenLoai) {
+        this.maLoai = maLoai;
+        this.tenLoai = tenLoai;
+    }
+
+    public LoaiSachDTO() {
     }
 }

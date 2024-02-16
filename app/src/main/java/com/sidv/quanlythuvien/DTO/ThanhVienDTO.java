@@ -1,53 +1,51 @@
 package com.sidv.quanlythuvien.DTO;
 
 public class ThanhVienDTO {
-    public int MATV;
-    public String HOTEN;
-    public String NAMSINH;
-
-//    public ThanhVienDTO() {
-//    }
-
-    public ThanhVienDTO() {
-        this.MATV = MATV;
-        this.HOTEN = HOTEN;
-        this.NAMSINH = NAMSINH;
-    }
-
-    public ThanhVienDTO(String HOTEN, String NAMSINH) {
-        this.HOTEN = HOTEN;
-        this.NAMSINH = NAMSINH;
-    }
-
-    public void setMATV(int MATV) {
-        this.MATV = MATV;
-    }
-
-    public int getMATV() {
-        return MATV;
-    }
-
-    public String getHOTEN() {
-        return HOTEN;
-    }
-
-    public void setHOTEN(String HOTEN) {
-        this.HOTEN = HOTEN;
-    }
-
-    public String getNAMSINH() {
-        return NAMSINH;
-    }
-
-    public void setNAMSINH(String NAMSINH) {
-        this.NAMSINH = NAMSINH;
-    }
+    public int maTV;
+    public String hoTen;
+    public String namSinh;
 
     @Override
     public String toString() {
-        return HOTEN ;
+        return "ThanhVienDTO{" +
+                "maTV=" + maTV +
+                ", hoTen='" + hoTen + '\'' +
+                ", namSinh='" + namSinh + '\'' +
+                '}';
     }
 
+    public int getMaTV() {
+        return maTV;
+    }
+
+    public void setMaTV(int maTV) {
+        this.maTV = maTV;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public String getNamSinh() {
+        return namSinh;
+    }
+
+    public void setNamSinh(String namSinh) {
+        this.namSinh = namSinh;
+    }
+
+    public ThanhVienDTO(int maTV, String hoTen, String namSinh) {
+        this.maTV = maTV;
+        this.hoTen = hoTen;
+        this.namSinh = namSinh;
+    }
+
+    public ThanhVienDTO() {
+    }
 }
 
 

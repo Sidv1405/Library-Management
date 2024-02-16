@@ -1,30 +1,38 @@
 package com.sidv.quanlythuvien.DTO;
 
 public class TopDTO {
-    private String TENSACH;
-    private int SOLUONG;
+    private String tenSach;
+    private int soLuong;
 
     public TopDTO() {
     }
 
-    public TopDTO(String TENSACH, int SOLUONG) {
-        this.TENSACH = TENSACH;
-        this.SOLUONG = SOLUONG;
+    @Override
+    public String toString() {
+        return "TopDTO{" +
+                "tenSach='" + tenSach + '\'' +
+                ", soLuong=" + soLuong +
+                '}';
     }
 
-    public String getTENSACH() {
-        return TENSACH;
+    public String getTenSach() {
+        return tenSach;
     }
 
-    public void setTENSACH(String TENSACH) {
-        this.TENSACH = TENSACH;
+    public void setTenSach(String tenSach) {
+        this.tenSach = tenSach;
     }
 
-    public int getSOLUONG() {
-        return SOLUONG;
+    public int getSoLuong() {
+        return soLuong;
     }
 
-    public void setSOLUONG(int SOLUONG) {
-        this.SOLUONG = SOLUONG;
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+
+    public TopDTO(String tenSach, int soLuong) {
+        this.tenSach = tenSach;
+        this.soLuong = soLuong;
     }
 }

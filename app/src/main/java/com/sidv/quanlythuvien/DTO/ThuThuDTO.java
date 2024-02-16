@@ -1,49 +1,45 @@
 package com.sidv.quanlythuvien.DTO;
 
 public class ThuThuDTO {
-    private String MATT;
-    private String HOTEN;
-    private String MATKHAU;
+    private String maTT;
+    private String hoTen;
+    private String matKhau;
 
     public ThuThuDTO() {
     }
 
-    public ThuThuDTO(String MATT, String HOTEN, String MATKHAU) {
-        this.MATT = MATT;
-        this.HOTEN = HOTEN;
-        this.MATKHAU = MATKHAU;
-    }
-
-    public String getMATT() {
-        return MATT;
-    }
-
-    public void setMATT(String MATT) {
-        this.MATT = MATT;
-    }
-
-    public String getHOTEN() {
-        return HOTEN;
-    }
-
-    public void setHOTEN(String HOTEN) {
-        this.HOTEN = HOTEN;
-    }
-
-    public String getMATKHAU() {
-        return MATKHAU;
-    }
-
-    public void setMATKHAU(String MATKHAU) {
-        this.MATKHAU = MATKHAU;
-    }
-
     @Override
     public String toString() {
-        return "ThuThuDTO{" +
-                "MATT='" + MATT + '\'' +
-                ", HOTEN='" + HOTEN + '\'' +
-                ", MATKHAU='" + MATKHAU + '\'' +
-                '}';
+        return "ThuThuDTO{" + "maTT='" + maTT + '\'' + ", hoTen='" + hoTen + '\'' + ", matKhau='" + matKhau + '\'' + '}';
+    }
+
+    public String getMaTT() {
+        return maTT;
+    }
+
+    public void setMaTT(String maTT) {
+        this.maTT = maTT;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
+    public ThuThuDTO(String maTT, String hoTen, String matKhau) {
+        this.maTT = maTT;
+        this.hoTen = hoTen;
+        this.matKhau = matKhau;
     }
 }
