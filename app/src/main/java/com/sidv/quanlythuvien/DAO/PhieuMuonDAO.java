@@ -55,7 +55,7 @@ public class PhieuMuonDAO {
         return listPM;
     }
 
-    public int createPhieuMuon(PhieuMuonDTO phieuMuonDTO) {
+    public boolean createPhieuMuon(PhieuMuonDTO phieuMuonDTO) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("matt", phieuMuonDTO.getMaThuThu());
         contentValues.put("matv", phieuMuonDTO.getMaThanhVien());
@@ -65,17 +65,20 @@ public class PhieuMuonDAO {
         contentValues.put("trasach", phieuMuonDTO.getTraSach());
         try {
             long ketQua = sqLiteDatabase.insert("PHIEUMUON", null, contentValues);
-            Toast.makeText(context, "Create success", Toast.LENGTH_SHORT).show();
-            return (int) ketQua;
-
+            if (ketQua != -1) {
+                Toast.makeText(context, "Thêm phiếu mượn thành công", Toast.LENGTH_SHORT).show();
+                return true;
+            } else {
+                Toast.makeText(context, "Thêm phiếu mượn thất bại", Toast.LENGTH_SHORT).show();
+                return false;
+            }
         } catch (SQLException e) {
-            //ap dung khi su dung cau lenh query
-            Toast.makeText(context, "Fail to add phieu muon" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Thêm phiếu mượn thất bại" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        return 0;
+        return false;
     }
 
-    public int updatePhieumuon(PhieuMuonDTO phieuMuonDTO) {
+    public boolean updatePhieumuon(PhieuMuonDTO phieuMuonDTO) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("matt", phieuMuonDTO.getMaThuThu());
         contentValues.put("matv", phieuMuonDTO.getMaThanhVien());
@@ -83,16 +86,12 @@ public class PhieuMuonDAO {
         contentValues.put("ngay", sdf.format(phieuMuonDTO.getNgay()));
         contentValues.put("tienthue", phieuMuonDTO.getTienThue());
         contentValues.put("trasach", phieuMuonDTO.getTraSach());
-        return sqLiteDatabase.update("PHIEUMUON", contentValues, "mapm=?", new String[]{String.valueOf(phieuMuonDTO.getMaPhieuMuon())});
+        int rowsAffected = sqLiteDatabase.update("PHIEUMUON", contentValues, "mapm=?", new String[]{String.valueOf(phieuMuonDTO.getMaPhieuMuon())});
+        return rowsAffected > 0;
     }
 
     public boolean deletePhieuMuon(int maPhieuMuon) {
-        int check = sqLiteDatabase.delete("PHIEUMUON", "mapm=?", new String[]{String.valueOf(maPhieuMuon)});
-        if (check <= 0) {
-            return false;
-        } else {
-            return true;
-        }
+        int rowsAffected = sqLiteDatabase.delete("PHIEUMUON", "mapm=?", new String[]{String.valueOf(maPhieuMuon)});
+        return rowsAffected > 0;
     }
-
 }
