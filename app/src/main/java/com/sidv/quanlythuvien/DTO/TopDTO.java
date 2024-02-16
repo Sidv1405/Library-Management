@@ -1,13 +1,13 @@
 package com.sidv.quanlythuvien.DTO;
 
-public class Top {
+public class TopDTO {
     private String TENSACH;
     private int SOLUONG;
 
-    public Top() {
+    public TopDTO() {
     }
 
-    public Top(String TENSACH, int SOLUONG) {
+    public TopDTO(String TENSACH, int SOLUONG) {
         this.TENSACH = TENSACH;
         this.SOLUONG = SOLUONG;
     }

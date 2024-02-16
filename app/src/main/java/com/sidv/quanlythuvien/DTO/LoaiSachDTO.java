@@ -1,16 +1,16 @@
 package com.sidv.quanlythuvien.DTO;
 
-public class LoaiSach {
+public class LoaiSachDTO {
     private int MALOAI;
     private String TENLOAI;
 
 
-    public LoaiSach() {
+    public LoaiSachDTO() {
         this.MALOAI = MALOAI;
         this.TENLOAI = TENLOAI;
     }
 
-    public LoaiSach(String TENLOAI) {
+    public LoaiSachDTO(String TENLOAI) {
         this.TENLOAI = TENLOAI;
     }
 

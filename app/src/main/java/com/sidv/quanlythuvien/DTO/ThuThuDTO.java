@@ -1,14 +1,14 @@
 package com.sidv.quanlythuvien.DTO;
 
-public class ThuThu {
+public class ThuThuDTO {
     private String MATT;
     private String HOTEN;
     private String MATKHAU;
 
-    public ThuThu() {
+    public ThuThuDTO() {
     }
 
-    public ThuThu(String MATT, String HOTEN, String MATKHAU) {
+    public ThuThuDTO(String MATT, String HOTEN, String MATKHAU) {
         this.MATT = MATT;
         this.HOTEN = HOTEN;
         this.MATKHAU = MATKHAU;
@@ -40,7 +40,7 @@ public class ThuThu {
 
     @Override
     public String toString() {
-        return "ThuThu{" +
+        return "ThuThuDTO{" +
                 "MATT='" + MATT + '\'' +
                 ", HOTEN='" + HOTEN + '\'' +
                 ", MATKHAU='" + MATKHAU + '\'' +

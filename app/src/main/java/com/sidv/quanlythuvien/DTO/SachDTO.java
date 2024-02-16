@@ -1,12 +1,12 @@
 package com.sidv.quanlythuvien.DTO;
 
-public class Sach {
+public class SachDTO {
     private int MASACH;
     private String TENSACH;
     private int GIATHUE;
     private int MALOAI;
 
-    public Sach() {
+    public SachDTO() {
         this.MASACH = MASACH;
         this.TENSACH = TENSACH;
         this.GIATHUE = GIATHUE;

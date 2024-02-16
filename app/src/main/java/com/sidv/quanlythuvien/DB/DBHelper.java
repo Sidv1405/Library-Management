@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
     static final String name = "PLIB";
-    static final int version = 2;
+    static final int version = 3;
 
     public DBHelper(Context context) {
         super(context, name, null, version);
@@ -19,41 +19,41 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //Tao bang Thu Thu
         String createTbThuThu = "CREATE TABLE THUTHU (" +
-                "MATT TEXT PRIMARY KEY," +
-                "HOTEN TEXT NOT NULL," +
-                "MATKHAU TEXT NOT NULL)";
+                "matt TEXT PRIMARY KEY," +
+                "hoten TEXT NOT NULL," +
+                "matkhau TEXT NOT NULL)";
         db.execSQL(createTbThuThu);
 
         //Tao bang Thanh Vien
         String createTbThanhVien = "CREATE TABLE THANHVIEN (" +
-                "MATV INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "HOTEN TEXT NOT NULL," +
-                "NAMSINH TEXT NOT NULL)";
+                "matv INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "hoten TEXT NOT NULL," +
+                "namsinh TEXT NOT NULL)";
         db.execSQL(createTbThanhVien);
 
-        //Tao bang Loai Sach
+        //Tao bang Loai SachDTO
         String createTbLoaiSach = " CREATE TABLE LOAISACH (" +
-                "MALOAI INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "TENLOAI TEXT NOT NULL)";
+                "maloai INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tenloai TEXT NOT NULL)";
         db.execSQL(createTbLoaiSach);
 
-        //Tao bang Sach
+        //Tao bang SachDTO
         String createTbSach = "CREATE TABLE SACH (" +
-                "MASACH INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "TENSACH TEXT NOT NULL," +
-                "GIATHUE INTEGER NOT NULL," +
-                "MALOAI INTEGER REFERENCES LOAISACH(MALOAI))";
+                "masach INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "tensach TEXT NOT NULL," +
+                "giathue INTEGER NOT NULL," +
+                "maloai INTEGER REFERENCES LOAISACH(MALOAI))";
         db.execSQL(createTbSach);
 
         // Tao bang Loai Phieu Muon
         String creaTbPhieuMuon = "CREATE TABLE PHIEUMUON (" +
-                "MAPM INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "MATT TEXT REFERENCES THUTHU(MATT)," +
-                "MATV INTEGER REFERENCES THANHVIEN(MATV)," +
-                "MASACH INTEGER REFERENCES SACH(MASACH)," +
-                "TIENTHUE INTEGER NOT NULL," +
-                "NGAY DATE NOT NULL," +
-                "TRASACH INTEGER NOT NULL )";
+                "mapm INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "matt TEXT REFERENCES THUTHU(MATT)," +
+                "matv INTEGER REFERENCES THANHVIEN(MATV)," +
+                "masach INTEGER REFERENCES SACH(MASACH)," +
+                "tienthue INTEGER NOT NULL," +
+                "ngay DATE NOT NULL," +
+                "trasach INTEGER NOT NULL )";
         db.execSQL(creaTbPhieuMuon);
 
         //inert du lieu mau

@@ -1,20 +1,20 @@
 package com.sidv.quanlythuvien.DTO;
 
-public class ThanhVien {
+public class ThanhVienDTO {
     public int MATV;
     public String HOTEN;
     public String NAMSINH;
 
-//    public ThanhVien() {
+//    public ThanhVienDTO() {
 //    }
 
-    public ThanhVien() {
+    public ThanhVienDTO() {
         this.MATV = MATV;
         this.HOTEN = HOTEN;
         this.NAMSINH = NAMSINH;
     }
 
-    public ThanhVien(String HOTEN, String NAMSINH) {
+    public ThanhVienDTO(String HOTEN, String NAMSINH) {
         this.HOTEN = HOTEN;
         this.NAMSINH = NAMSINH;
     }

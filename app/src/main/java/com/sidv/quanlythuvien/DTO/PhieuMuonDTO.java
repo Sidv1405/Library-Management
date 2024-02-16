@@ -2,28 +2,29 @@ package com.sidv.quanlythuvien.DTO;
 
 import java.util.Date;
 
-public class PhieuMuon {
+public class PhieuMuonDTO {
     private int maPhieuMuon;
     private String maThuThu;
     private int maThanhVien;
     private int maSach;
     private int tienThue;
-    private int traSach;
     private Date ngay;
+    private int traSach;
 
-    public PhieuMuon() {
+
+    public PhieuMuonDTO() {
     }
 
     @Override
     public String toString() {
-        return "PhieuMuon{" +
+        return "PhieuMuonDTO{" +
                 "maPhieuMuon=" + maPhieuMuon +
                 ", maThuThu='" + maThuThu + '\'' +
                 ", maThanhVien=" + maThanhVien +
                 ", maSach=" + maSach +
                 ", tienThue=" + tienThue +
-                ", traSach=" + traSach +
                 ", ngay=" + ngay +
+                ", traSach=" + traSach +
                 '}';
     }
 
@@ -67,14 +68,6 @@ public class PhieuMuon {
         this.tienThue = tienThue;
     }
 
-    public int getTraSach() {
-        return traSach;
-    }
-
-    public void setTraSach(int traSach) {
-        this.traSach = traSach;
-    }
-
     public Date getNgay() {
         return ngay;
     }
@@ -83,13 +76,21 @@ public class PhieuMuon {
         this.ngay = ngay;
     }
 
-    public PhieuMuon(int maPhieuMuon, String maThuThu, int maThanhVien, int maSach, int tienThue, int traSach, Date ngay) {
+    public int getTraSach() {
+        return traSach;
+    }
+
+    public void setTraSach(int traSach) {
+        this.traSach = traSach;
+    }
+
+    public PhieuMuonDTO(int maPhieuMuon, String maThuThu, int maThanhVien, int maSach, int tienThue, Date ngay, int traSach) {
         this.maPhieuMuon = maPhieuMuon;
         this.maThuThu = maThuThu;
         this.maThanhVien = maThanhVien;
         this.maSach = maSach;
         this.tienThue = tienThue;
-        this.traSach = traSach;
         this.ngay = ngay;
+        this.traSach = traSach;
     }
 }
