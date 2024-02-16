@@ -38,6 +38,15 @@ public class LogInActivity extends AppCompatActivity {
 
         tapLogIn();
 
+        tapCancel();
+
+    }
+
+    private void tapCancel() {
+        btnCancel.setOnClickListener(v -> {
+            edtUserName.setText("");
+            edtPassword.setText("");
+        });
     }
 
     private void tapLogIn() {
@@ -79,8 +88,8 @@ public class LogInActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("INFO", MODE_PRIVATE);
         boolean isRemember = sharedPreferences.getBoolean("checkRemember", false);
         if (isRemember) {
-            String user = sharedPreferences.getString("user", "");
-            String pass = sharedPreferences.getString("pass", "");
+            String user = sharedPreferences.getString("username", "");
+            String pass = sharedPreferences.getString("password", "");
             edtUserName.setText(user);
             edtPassword.setText(pass);
             chkRemember.setChecked(isRemember);
