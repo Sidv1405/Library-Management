@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
     static final String name = "PLIB";
-    static final int version = 1;
+    static final int version = 2;
 
     public DBHelper(Context context) {
         super(context, name, null, version);
@@ -57,7 +57,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(creaTbPhieuMuon);
 
         //inert du lieu mau
-        String insThuThu = "INSERT INTO THUTHU VALUES('tt1','Nguyen Van Teo', 'tt123'),('tt2','Nguyen Van be', 'tt125'),('tt3','Nguyen Van Can', 'tt345'),('admin','tienlttps23958', 'ps23958')";
+        String insThuThu = "INSERT INTO THUTHU VALUES('tt1','Nguyen Van Teo', 'tt123'),('tt2','Nguyen Van be', 'tt125'),('tt3','Nguyen Van Can', 'tt345'),('admin','tienlttps23958', 'admin')";
         db.execSQL(insThuThu);
         String insThanhVien = "INSERT INTO THANHVIEN VALUES (1, 'Tran Van Nam','2000'),(2, 'Tran van Binh','2002'),(3, 'Nguyen Thi be','1999'),(4, 'Le Thi Mai','2000')";
         db.execSQL(insThanhVien);
