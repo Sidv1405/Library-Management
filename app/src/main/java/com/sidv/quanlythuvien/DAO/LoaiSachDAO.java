@@ -18,16 +18,16 @@ public class LoaiSachDAO {
     private Context context;
 
     public LoaiSachDAO(Context context) {
-        this.sqLiteDatabase = sqLiteDatabase;
-        this.dbHelper = dbHelper;
         this.context = context;
+        dbHelper = new DBHelper(context);
+        sqLiteDatabase = dbHelper.getWritableDatabase();
     }
 
     public ArrayList<LoaiSachDTO> getList() {
         ArrayList<LoaiSachDTO> listLS = new ArrayList<>();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM LOAISACH", null);
         if (cursor.getCount() > 0) {
-            while (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
                 listLS.add(new LoaiSachDTO(cursor.getInt(0), cursor.getString(1)));
             }
         }
@@ -42,7 +42,7 @@ public class LoaiSachDAO {
             long ketQua = sqLiteDatabase.insert("LOAISACH", null, contentValues);
             if (ketQua != -1) {
                 Toast.makeText(context, "Thêm loại sách thành công", Toast.LENGTH_SHORT).show();
-                return false;
+                return true;
             } else {
                 Toast.makeText(context, "Thêm loại sách thất bại", Toast.LENGTH_SHORT).show();
                 return false;
@@ -64,4 +64,5 @@ public class LoaiSachDAO {
         int rowsAffected = sqLiteDatabase.delete("LOAISACH", "maloai=?", new String[]{String.valueOf(maLoaiSach)});
         return rowsAffected > 0;
     }
+
 }

@@ -34,6 +34,10 @@ public class LoaiSachDTO {
         this.tenLoai = tenLoai;
     }
 
+    public LoaiSachDTO(String tenLoai) {
+        this.tenLoai = tenLoai;
+    }
+
     public LoaiSachDTO() {
     }
 }

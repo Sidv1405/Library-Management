@@ -42,7 +42,7 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.Phie
             txtTienThue = itemView.findViewById(R.id.txtTienThue);
             txtNgay = itemView.findViewById(R.id.txtNgay);
             txtTrangthai = itemView.findViewById(R.id.txtTrangThai);
-            CardViewpm = itemView.findViewById(R.id.CardViewpm);
+            CardViewpm = itemView.findViewById(R.id.cardViewPM);
             ivdelete = itemView.findViewById(R.id.ivdelete);
         }
     }
