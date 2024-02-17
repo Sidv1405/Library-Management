@@ -44,6 +44,11 @@ public class ThanhVienDTO {
         this.namSinh = namSinh;
     }
 
+    public ThanhVienDTO(String hoTen, String namSinh) {
+        this.hoTen = hoTen;
+        this.namSinh = namSinh;
+    }
+
     public ThanhVienDTO() {
     }
 }

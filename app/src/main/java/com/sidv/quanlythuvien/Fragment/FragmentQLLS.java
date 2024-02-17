@@ -30,7 +30,7 @@ public class FragmentQLLS extends Fragment {
     private ArrayList<LoaiSachDTO> listLS;
     private LoaiSachDAO loaiSachDAO;
     private LoaiSachAdapter loaiSachAdapter;
-    private FloatingActionButton fabAdd;
+    private FloatingActionButton fabAddLS;
 
     @Nullable
     @Override
@@ -51,7 +51,7 @@ public class FragmentQLLS extends Fragment {
     }
 
     private void addNewLS() {
-        fabAdd.setOnClickListener(v -> {
+        fabAddLS.setOnClickListener(v -> {
             // Hiển thị dialog
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             LayoutInflater layoutInflater = getLayoutInflater();
@@ -91,7 +91,7 @@ public class FragmentQLLS extends Fragment {
 
     private void maps(@NonNull View view) {
         rcLoaiSach = view.findViewById(R.id.rcvLoaiSach);
-        fabAdd = view.findViewById(R.id.fabAddLoaiSach);
+        fabAddLS = view.findViewById(R.id.fabAddLoaiSach);
     }
 
     private void showListLS() {

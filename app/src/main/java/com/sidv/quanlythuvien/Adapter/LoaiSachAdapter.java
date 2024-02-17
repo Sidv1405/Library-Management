@@ -56,6 +56,10 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.LoaiSa
 
         deleteLS(holder);
 
+        editLS(holder, loaiSachDTO);
+    }
+
+    private void editLS(@NonNull LoaiSachViewHolder holder, LoaiSachDTO loaiSachDTO) {
         holder.cardViewLS.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("Cập nhật loại sách");
@@ -105,30 +109,26 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.LoaiSa
     }
 
     private void deleteLS(@NonNull LoaiSachViewHolder holder) {
-        holder.imgDelete.setOnClickListener(v -> {
+        holder.imgDeleteLS.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle("Xóa loại sách");
             builder.setIcon(R.drawable.ic_delete);
             builder.setMessage("Bạn có muốn xóa loại sách?");
-            builder.setPositiveButton("Xác nhận", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    boolean check = loaiSachDAO.deleteLoaiSach(listLS.get(holder.getAdapterPosition()).getMaLoai());
-                    if (check) {
-                        Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
-                        listLS.clear();
-                        listLS.addAll(loaiSachDAO.getList());
-                        notifyDataSetChanged();
-                    } else {
-                        Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
-                    }
+            builder.setPositiveButton("Xác nhận", (dialog, which) -> {
+                boolean check = loaiSachDAO.deleteLoaiSach(listLS.get(holder.getAdapterPosition()).getMaLoai());
+                if (check) {
+                    Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
+                    listLS.clear();
+                    listLS.addAll(loaiSachDAO.getList());
+                    notifyDataSetChanged();
+                } else {
+                    Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
                 }
             });
             builder.setNegativeButton("Hủy", null);
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
             Objects.requireNonNull(alertDialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.rgb(254, 230, 179)));
-
         });
     }
 
@@ -138,15 +138,15 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.LoaiSa
     }
 
     public class LoaiSachViewHolder extends RecyclerView.ViewHolder {
-        TextView txtMaLS, txtTenLS;
-        ImageView imgDelete;
-        CardView cardViewLS;
+        private TextView txtMaLS, txtTenLS;
+        private ImageView imgDeleteLS;
+        private CardView cardViewLS;
 
         public LoaiSachViewHolder(@NonNull View itemView) {
             super(itemView);
             txtMaLS = itemView.findViewById(R.id.txtMaLS);
             txtTenLS = itemView.findViewById(R.id.txtTenLS);
-            imgDelete = itemView.findViewById(R.id.imgDeleteLS);
+            imgDeleteLS = itemView.findViewById(R.id.imgDeleteLS);
             cardViewLS = itemView.findViewById(R.id.cardViewLS);
 
         }

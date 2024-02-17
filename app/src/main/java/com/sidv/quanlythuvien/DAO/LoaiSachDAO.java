@@ -56,13 +56,13 @@ public class LoaiSachDAO {
     public boolean updateLoaiSach(LoaiSachDTO loaiSachDTO) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("tenloai", loaiSachDTO.getTenLoai());
-        int rowsAffected = sqLiteDatabase.update("LOAISACH", contentValues, "maloai=?", new String[]{String.valueOf(loaiSachDTO.getMaLoai())});
-        return rowsAffected > 0;
+        int check = sqLiteDatabase.update("LOAISACH", contentValues, "maloai=?", new String[]{String.valueOf(loaiSachDTO.getMaLoai())});
+        return check > 0;
     }
 
     public boolean deleteLoaiSach(int maLoaiSach) {
-        int rowsAffected = sqLiteDatabase.delete("LOAISACH", "maloai=?", new String[]{String.valueOf(maLoaiSach)});
-        return rowsAffected > 0;
+        int check = sqLiteDatabase.delete("LOAISACH", "maloai=?", new String[]{String.valueOf(maLoaiSach)});
+        return check > 0;
     }
 
 }
