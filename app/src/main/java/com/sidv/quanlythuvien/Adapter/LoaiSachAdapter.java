@@ -66,7 +66,7 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.LoaiSa
             builder.setIcon(R.drawable.ic_edit);
 
             // Tạo EditText trong dialog
-            final EditText edtTenLoaiSach = new EditText(context);
+            EditText edtTenLoaiSach = new EditText(context);
             edtTenLoaiSach.setText(loaiSachDTO.getTenLoai());
 
             builder.setView(edtTenLoaiSach);

@@ -65,4 +65,27 @@ public class LoaiSachDAO {
         return check > 0;
     }
 
+    public ArrayList<String> getListTen() {
+        ArrayList<String> listLS = new ArrayList<>();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT tenloai FROM LOAISACH", null);
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                listLS.add(cursor.getString(0));
+            }
+        }
+        cursor.close();
+        return listLS;
+    }
+
+    public int getMaLSByName(String tenLoai) {
+        int maLS = -1; // Giá trị mặc định nếu không tìm thấy
+
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT maloai FROM LOAISACH WHERE tenloai = ?", new String[]{tenLoai});
+        if (cursor.moveToFirst()) {
+            maLS = cursor.getInt(cursor.getColumnIndex("maloai"));
+        }
+        cursor.close();
+
+        return maLS;
+    }
 }

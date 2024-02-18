@@ -55,6 +55,12 @@ public class SachDTO {
         this.maLoai = maLoai;
     }
 
+    public SachDTO(String tenSach, int giaThue, int maLoai) {
+        this.tenSach = tenSach;
+        this.giaThue = giaThue;
+        this.maLoai = maLoai;
+    }
+
     public SachDTO() {
     }
 }

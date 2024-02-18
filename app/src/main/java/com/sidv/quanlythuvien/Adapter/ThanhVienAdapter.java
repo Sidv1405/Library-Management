@@ -17,9 +17,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.sidv.quanlythuvien.DAO.ThanhVienDAO;
 import com.sidv.quanlythuvien.DTO.ThanhVienDTO;
 import com.sidv.quanlythuvien.R;
@@ -70,14 +71,23 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.Than
             LinearLayout layout = new LinearLayout(context);
             layout.setOrientation(LinearLayout.VERTICAL);
 
-            final EditText edtTenTV = new EditText(context);
-            edtTenTV.setText(thanhVienDTO.getHoTen());
-            layout.addView(edtTenTV);
+            TextInputLayout textInputLayoutTenTV = new TextInputLayout(context);
+            textInputLayoutTenTV.setHint("Họ tên");
 
-            // EditText 2: Mã loại sách
-            final EditText edtNamSinhTV = new EditText(context);
+            TextInputEditText edtTenTV = new TextInputEditText(context);
+            edtTenTV.setText(thanhVienDTO.getHoTen());
+            textInputLayoutTenTV.addView(edtTenTV);
+
+            layout.addView(textInputLayoutTenTV);
+
+            TextInputLayout textInputLayoutNamSinhTV = new TextInputLayout(context);
+            textInputLayoutNamSinhTV.setHint("Năm sinh");
+
+            TextInputEditText edtNamSinhTV = new TextInputEditText(context);
             edtNamSinhTV.setText(String.valueOf(thanhVienDTO.getNamSinh()));
-            layout.addView(edtNamSinhTV);
+            textInputLayoutNamSinhTV.addView(edtNamSinhTV);
+
+            layout.addView(textInputLayoutNamSinhTV);
 
             builder.setView(layout);
 
