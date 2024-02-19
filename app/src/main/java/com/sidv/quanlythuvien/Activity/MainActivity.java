@@ -25,7 +25,7 @@ import com.sidv.quanlythuvien.Fragment.FragmentQLLS;
 import com.sidv.quanlythuvien.Fragment.FragmentQLPM;
 import com.sidv.quanlythuvien.Fragment.FragmentQLS;
 import com.sidv.quanlythuvien.Fragment.FragmentQLTV;
-import com.sidv.quanlythuvien.Fragment.FragmentTTV;
+import com.sidv.quanlythuvien.Fragment.FragmentTND;
 import com.sidv.quanlythuvien.Fragment.FragmentTop;
 import com.sidv.quanlythuvien.R;
 
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.doanhthu) {
                 fragment = new FragmentDT();
             } else if (item.getItemId() == R.id.themnd) {
-                fragment = new FragmentTTV();
+                fragment = new FragmentTND();
             } else if (item.getItemId() == R.id.doimk) {
                 fragment = new FragmentDMK();
             } else if (item.getItemId() == R.id.dx) {
