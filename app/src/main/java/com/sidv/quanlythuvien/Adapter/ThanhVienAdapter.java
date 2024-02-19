@@ -54,8 +54,8 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.Than
         ThanhVienDTO thanhVienDTO = listTV.get(position);
         thanhVienDAO = new ThanhVienDAO(context);
         holder.txtMaTV.setText("Mã thành viên: " + thanhVienDTO.getMaTV());
-        holder.txtTenTV.setText(thanhVienDTO.getHoTen());
-        holder.txtNamSinhTV.setText(thanhVienDTO.getNamSinh());
+        holder.txtTenTV.setText("Tên: " + thanhVienDTO.getHoTen());
+        holder.txtNamSinhTV.setText("Năm sinh: " + thanhVienDTO.getNamSinh());
 
         deleteTV(holder);
 
@@ -63,62 +63,67 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.Than
     }
 
     private void updateTV(@NonNull ThanhVienViewHolder holder, ThanhVienDTO thanhVienDTO) {
-        holder.cardViewTV.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Cập nhật thành viên");
-            builder.setIcon(R.drawable.ic_edit);
+        holder.cardViewTV.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Cập nhật thành viên");
+                builder.setIcon(R.drawable.ic_edit);
 
-            LinearLayout layout = new LinearLayout(context);
-            layout.setOrientation(LinearLayout.VERTICAL);
+                LinearLayout layout = new LinearLayout(context);
+                layout.setOrientation(LinearLayout.VERTICAL);
 
-            TextInputLayout textInputLayoutTenTV = new TextInputLayout(context);
-            textInputLayoutTenTV.setHint("Họ tên");
+                TextInputLayout textInputLayoutTenTV = new TextInputLayout(context);
+                textInputLayoutTenTV.setHint("Họ tên:");
 
-            TextInputEditText edtTenTV = new TextInputEditText(context);
-            edtTenTV.setText(thanhVienDTO.getHoTen());
-            textInputLayoutTenTV.addView(edtTenTV);
+                TextInputEditText edtTenTV = new TextInputEditText(context);
+                edtTenTV.setText(thanhVienDTO.getHoTen());
+                textInputLayoutTenTV.addView(edtTenTV);
 
-            layout.addView(textInputLayoutTenTV);
+                layout.addView(textInputLayoutTenTV);
 
-            TextInputLayout textInputLayoutNamSinhTV = new TextInputLayout(context);
-            textInputLayoutNamSinhTV.setHint("Năm sinh");
+                TextInputLayout textInputLayoutNamSinhTV = new TextInputLayout(context);
+                textInputLayoutNamSinhTV.setHint("Năm sinh:");
 
-            TextInputEditText edtNamSinhTV = new TextInputEditText(context);
-            edtNamSinhTV.setText(String.valueOf(thanhVienDTO.getNamSinh()));
-            textInputLayoutNamSinhTV.addView(edtNamSinhTV);
+                TextInputEditText edtNamSinhTV = new TextInputEditText(context);
+                edtNamSinhTV.setText(String.valueOf(thanhVienDTO.getNamSinh()));
+                textInputLayoutNamSinhTV.addView(edtNamSinhTV);
 
-            layout.addView(textInputLayoutNamSinhTV);
+                layout.addView(textInputLayoutNamSinhTV);
 
-            builder.setView(layout);
+                builder.setView(layout);
 
-            builder.setPositiveButton("Cập nhật", (dialog, which) -> {
-                String tenMoi = edtTenTV.getText().toString().trim();
-                String namSinhMoi = edtNamSinhTV.getText().toString().trim();
-                if (!tenMoi.isEmpty() || !namSinhMoi.isEmpty()) {
-                    thanhVienDTO.setHoTen(tenMoi);
-                    thanhVienDTO.setNamSinh(namSinhMoi);
-                    ThanhVienDAO thanhVienDAO1 = new ThanhVienDAO(context);
-                    boolean check = thanhVienDAO1.updateThanhVien(thanhVienDTO);
-                    if (check) {
-                        Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                        notifyDataSetChanged();
+                builder.setPositiveButton("Cập nhật", (dialog, which) -> {
+                    String tenMoi = edtTenTV.getText().toString().trim();
+                    String namSinhMoi = edtNamSinhTV.getText().toString().trim();
+                    if (!tenMoi.isEmpty() || !namSinhMoi.isEmpty()) {
+                        thanhVienDTO.setHoTen(tenMoi);
+                        thanhVienDTO.setNamSinh(namSinhMoi);
+                        ThanhVienDAO thanhVienDAO1 = new ThanhVienDAO(context);
+                        boolean check = thanhVienDAO1.updateThanhVien(thanhVienDTO);
+                        if (check) {
+                            Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                            notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(context, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(context, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Vui lòng nhập đủ các trường", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(context, "Vui lòng nhập đủ các trường", Toast.LENGTH_SHORT).show();
-                }
-            });
-            builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
+                });
+                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
-            AlertDialog dialog = builder.create();
-            dialog.show();
-            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.rgb(254, 230, 179)));
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.rgb(254, 230, 179)));
+
+                return true;
+            }
         });
     }
 

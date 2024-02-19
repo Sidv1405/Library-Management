@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.sidv.quanlythuvien.DAO.LoaiSachDAO;
 import com.sidv.quanlythuvien.DTO.LoaiSachDTO;
 import com.sidv.quanlythuvien.R;
@@ -27,8 +30,8 @@ import java.util.Objects;
 
 
 public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.LoaiSachViewHolder> {
-    private ArrayList<LoaiSachDTO> listLS;
-    private Context context;
+    private final ArrayList<LoaiSachDTO> listLS;
+    private final Context context;
     private LoaiSachDAO loaiSachDAO;
 
     public LoaiSachAdapter(ArrayList<LoaiSachDTO> listLS, Context context) {
@@ -52,7 +55,7 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.LoaiSa
         LoaiSachDTO loaiSachDTO = listLS.get(position);
         loaiSachDAO = new LoaiSachDAO(context);
         holder.txtMaLS.setText("Mã loại sách: " + loaiSachDTO.getMaLoai());
-        holder.txtTenLS.setText(loaiSachDTO.getTenLoai());
+        holder.txtTenLS.setText("Loại sách: "+loaiSachDTO.getTenLoai());
 
         deleteLS(holder);
 
@@ -60,51 +63,57 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.LoaiSa
     }
 
     private void editLS(@NonNull LoaiSachViewHolder holder, LoaiSachDTO loaiSachDTO) {
-        holder.cardViewLS.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Cập nhật loại sách");
-            builder.setIcon(R.drawable.ic_edit);
+        holder.cardViewLS.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Cập nhật loại sách");
+                builder.setIcon(R.drawable.ic_edit);
 
-            // Tạo EditText trong dialog
-            EditText edtTenLoaiSach = new EditText(context);
-            edtTenLoaiSach.setText(loaiSachDTO.getTenLoai());
+                LinearLayout layout = new LinearLayout(context);
+                layout.setOrientation(LinearLayout.VERTICAL);
 
-            builder.setView(edtTenLoaiSach);
+                TextInputLayout textInputLayoutTenS = new TextInputLayout(context);
+                textInputLayoutTenS.setHint("Loại sách:");
+                TextInputEditText edtTenLS = new TextInputEditText(context);
+                edtTenLS.setText(loaiSachDTO.getTenLoai());
+                textInputLayoutTenS.addView(edtTenLS);
+                layout.addView(textInputLayoutTenS);
+                builder.setView(layout);
 
-            // Update
-            builder.setPositiveButton("Cập nhật", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    String tenLoaiSachMoi = edtTenLoaiSach.getText().toString().trim();
-                    if (!tenLoaiSachMoi.isEmpty()) {
-                        // Cập nhật thông tin loại sách
-                        loaiSachDTO.setTenLoai(tenLoaiSachMoi);
-                        LoaiSachDAO loaiSachDAO = new LoaiSachDAO(context);
-                        boolean isUpdated = loaiSachDAO.updateLoaiSach(loaiSachDTO);
-                        if (isUpdated) {
-                            Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                            notifyDataSetChanged();
+                builder.setPositiveButton("Cập nhật", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String tenLoaiSachMoi = edtTenLS.getText().toString().trim();
+                        if (!tenLoaiSachMoi.isEmpty()) {
+                            // Cập nhật thông tin loại sách
+                            loaiSachDTO.setTenLoai(tenLoaiSachMoi);
+                            LoaiSachDAO loaiSachDAO = new LoaiSachDAO(context);
+                            boolean isUpdated = loaiSachDAO.updateLoaiSach(loaiSachDTO);
+                            if (isUpdated) {
+                                Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                                notifyDataSetChanged();
+                            } else {
+                                Toast.makeText(context, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(context, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Vui lòng nhập tên loại sách", Toast.LENGTH_SHORT).show();
                         }
-                    } else {
-                        Toast.makeText(context, "Vui lòng nhập tên loại sách", Toast.LENGTH_SHORT).show();
                     }
-                }
-            });
-
-            // Thêm nút "Hủy"
-            builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-
-            // Tạo và hiển thị dialog
-            AlertDialog dialog = builder.create();
-            dialog.show();
-            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.rgb(254, 230, 179)));
+                });
+                // Thêm nút "Hủy"
+                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                // Tạo và hiển thị dialog
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.rgb(254, 230, 179)));
+                return true;
+            }
         });
     }
 
@@ -138,9 +147,10 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.LoaiSa
     }
 
     public class LoaiSachViewHolder extends RecyclerView.ViewHolder {
-        private TextView txtMaLS, txtTenLS;
-        private ImageView imgDeleteLS;
-        private CardView cardViewLS;
+        private final TextView txtMaLS;
+        private final TextView txtTenLS;
+        private final ImageView imgDeleteLS;
+        private final CardView cardViewLS;
 
         public LoaiSachViewHolder(@NonNull View itemView) {
             super(itemView);

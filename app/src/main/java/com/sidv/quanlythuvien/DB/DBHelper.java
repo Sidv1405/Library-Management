@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
     static final String name = "PLIB";
-    static final int version = 7;
+    static final int version = 8;
 
     public DBHelper(Context context) {
         super(context, name, null, version);
@@ -65,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(insLoaiSach);
         String insSach = "INSERT INTO SACH VALUES (1, 'Lập trình java 1', 1500, 1),(2, 'Lập trình java 2', 5500, 1),(3, 'Android cơ bản', 2000, 1),(4, 'MacLeNin', 3500, 2),(5, 'Photoshop', 2000, 3)";
         db.execSQL(insSach);
-        String insPhieuMuon = "INSERT INTO PHIEUMUON VALUES (1, 'tt1', 1, 2, 5500, '2022/10/09',1 ),(2, 'tt1', 1, 3, 4500, '2022/08/09',0 ),(3, 'tt3', 3, 4, 3500, '2022/09/09',1 )";
+        String insPhieuMuon = "INSERT INTO PHIEUMUON VALUES (1, 'tt1', 1, 2, 5500, '09/10/2022',1 ),(2, 'tt1', 1, 3, 4500, '09/08/2022',0 ),(3, 'tt3', 3, 4, 3500, '09/09/2022',1 )";
         db.execSQL(insPhieuMuon);
     }
 

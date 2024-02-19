@@ -64,4 +64,16 @@ public class ThanhVienDAO {
     public boolean deleteThanhVien(int maThanhVien) {
         return sqLiteDatabase.delete("THANHVIEN", "matv=?", new String[]{String.valueOf(maThanhVien)}) > 0;
     }
+
+    public ArrayList<String> getListTenTV() {
+        ArrayList<String> listTenTV = new ArrayList<>();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT hoten FROM THANHVIEN", null);
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                listTenTV.add(cursor.getString(0));
+            }
+        }
+        cursor.close();
+        return listTenTV;
+    }
 }

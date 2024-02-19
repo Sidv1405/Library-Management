@@ -18,18 +18,18 @@ import java.util.Date;
 public class PhieuMuonDAO {
 
     private SQLiteDatabase sqLiteDatabase;
-    private Context context;
     private DBHelper dbHelper;
-
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    private Context context;
 
     public PhieuMuonDAO(Context context) {
-        this.sqLiteDatabase = sqLiteDatabase;
         this.context = context;
-        this.dbHelper = dbHelper;
+        dbHelper = new DBHelper(context);
+        sqLiteDatabase = dbHelper.getWritableDatabase();
     }
 
-    public ArrayList<PhieuMuonDTO> getList() {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    public ArrayList<PhieuMuonDTO> getList() throws ParseException {
         ArrayList<PhieuMuonDTO> listPM = new ArrayList<>();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM PHIEUMUON", null);
         if (cursor.getCount() > 0) {
@@ -40,12 +40,7 @@ public class PhieuMuonDAO {
                 phieuMuonDTO.setMaThanhVien(cursor.getInt(2));
                 phieuMuonDTO.setMaSach(cursor.getInt(3));
                 phieuMuonDTO.setTienThue(cursor.getInt(4));
-                try {
-                    Date ngay = sdf.parse(cursor.getString(6));
-                    phieuMuonDTO.setNgay(ngay);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                phieuMuonDTO.setNgay(sdf.parse(cursor.getString(5)));
                 phieuMuonDTO.setTraSach(cursor.getInt(6));
 
                 listPM.add(phieuMuonDTO);
@@ -93,5 +88,94 @@ public class PhieuMuonDAO {
     public boolean deletePhieuMuon(int maPhieuMuon) {
         int rowsAffected = sqLiteDatabase.delete("PHIEUMUON", "mapm=?", new String[]{String.valueOf(maPhieuMuon)});
         return rowsAffected > 0;
+    }
+
+    public String getTenTVById(int maTV) {
+        String tenTV = null;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT THANHVIEN.hoten FROM PHIEUMUON JOIN THANHVIEN ON PHIEUMUON.matv = THANHVIEN.matv WHERE PHIEUMUON.matv = ? ", new String[]{String.valueOf(maTV)});
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex("hoten");
+            if (columnIndex != -1) {
+                tenTV = cursor.getString(columnIndex);
+            }
+        }
+        cursor.close();
+        return tenTV;
+    }
+
+    public String getTenSById(int maSach) {
+        String tenS = null;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT SACH.tensach FROM PHIEUMUON JOIN SACH ON PHIEUMUON.masach = SACH.masach WHERE PHIEUMUON.masach = ? ", new String[]{String.valueOf(maSach)});
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex("tensach");
+            if (columnIndex != -1) {
+                tenS = cursor.getString(columnIndex);
+            }
+        }
+        cursor.close();
+        return tenS;
+    }
+
+    public ArrayList<String> getListTenTV() {
+        ArrayList<String> listTV = new ArrayList<>();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT hoten FROM THANHVIEN", null);
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                listTV.add(cursor.getString(0));
+            }
+        }
+        cursor.close();
+        return listTV;
+    }
+
+    public ArrayList<String> getListTenS() {
+        ArrayList<String> listS = new ArrayList<>();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT tensach FROM SACH", null);
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                listS.add(cursor.getString(0));
+            }
+        }
+        cursor.close();
+        return listS;
+    }
+
+    public int getGiaSachByTen(String tenSach) {
+        int giaS = 0;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT giathue FROM SACH WHERE tensach = ? ", new String[]{tenSach});
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex("giathue");
+            if (columnIndex != -1) {
+                giaS = cursor.getInt(columnIndex);
+            }
+        }
+        cursor.close();
+        return giaS;
+    }
+
+    public int getMaTVById(String tenTV){
+        int maTV = 0;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT matv FROM THANHVIEN WHERE hoten = ? ", new String[]{tenTV});
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex("matv");
+            if (columnIndex != -1) {
+                maTV = cursor.getInt(columnIndex);
+            }
+        }
+        cursor.close();
+        return maTV;
+    }
+
+    public int getMaSById(String tenS) {
+        int maS = 0;
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT masach FROM SACH WHERE tensach = ? ", new String[]{tenS});
+        if (cursor.getCount() > 0 && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex("masach");
+            if (columnIndex != -1) {
+                maS = cursor.getInt(columnIndex);
+            }
+        }
+        cursor.close();
+        return maS;
     }
 }

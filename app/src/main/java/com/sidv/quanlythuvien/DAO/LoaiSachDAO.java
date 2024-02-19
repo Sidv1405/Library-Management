@@ -78,7 +78,7 @@ public class LoaiSachDAO {
     }
 
     public int getMaLSByName(String tenLoai) {
-        int maLS = -1; // Giá trị mặc định nếu không tìm thấy
+        int maLS = -1;
 
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT maloai FROM LOAISACH WHERE tenloai = ?", new String[]{tenLoai});
         if (cursor.moveToFirst()) {

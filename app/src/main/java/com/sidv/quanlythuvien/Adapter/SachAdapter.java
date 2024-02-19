@@ -60,9 +60,9 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.SachViewHolder
         sachDAO = new SachDAO(context);
 
         holder.txtMaS.setText("Mã sách: " + sachDTO.getMaSach());
-        holder.txtTenS.setText("Sách: " + sachDTO.getTenSach());
-        holder.txtGiaS.setText("Giá: " + sachDTO.getGiaThue());
-        holder.txtLS_S.setText("Thể loại: " + sachDAO.getTenLSById(sachDTO.getMaLoai()));
+        holder.txtTenS.setText("Tên sách: " + sachDTO.getTenSach());
+        holder.txtGiaS.setText("Giá thuê: " + sachDTO.getGiaThue());
+        holder.txtLS_S.setText("Loại sách: " + sachDAO.getTenLSById(sachDTO.getMaLoai()));
 
         deleteS(holder);
 
@@ -70,70 +70,75 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.SachViewHolder
     }
 
     private void updateS(@NonNull SachViewHolder holder, SachDTO sachDTO) {
-        holder.cardViewS.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Cập nhật sách");
-            builder.setIcon(R.drawable.ic_edit);
+        holder.cardViewS.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Cập nhật sách");
+                builder.setIcon(R.drawable.ic_edit);
 
-            LinearLayout layout = new LinearLayout(context);
-            layout.setOrientation(LinearLayout.VERTICAL);
+                LinearLayout layout = new LinearLayout(context);
+                layout.setOrientation(LinearLayout.VERTICAL);
 
-            TextInputLayout textInputLayoutTenS = new TextInputLayout(context);
-            textInputLayoutTenS.setHint("Tên sách");
-            TextInputEditText edtTenS = new TextInputEditText(context);
-            edtTenS.setText(sachDTO.getTenSach());
-            textInputLayoutTenS.addView(edtTenS);
-            layout.addView(textInputLayoutTenS);
+                TextInputLayout textInputLayoutTenS = new TextInputLayout(context);
+                textInputLayoutTenS.setHint("Tên sách:");
+                TextInputEditText edtTenS = new TextInputEditText(context);
+                edtTenS.setText(sachDTO.getTenSach());
+                textInputLayoutTenS.addView(edtTenS);
+                layout.addView(textInputLayoutTenS);
 
-            TextInputLayout textInputLayoutGiaThueS = new TextInputLayout(context);
-            textInputLayoutGiaThueS.setHint("Năm sinh");
-            TextInputEditText edtGiaThueS = new TextInputEditText(context);
-            edtGiaThueS.setText(String.valueOf(sachDTO.getGiaThue()));
-            textInputLayoutGiaThueS.addView(edtGiaThueS);
-            layout.addView(textInputLayoutGiaThueS);
+                TextInputLayout textInputLayoutGiaThueS = new TextInputLayout(context);
+                textInputLayoutGiaThueS.setHint("Giá thuê:");
+                TextInputEditText edtGiaThueS = new TextInputEditText(context);
+                edtGiaThueS.setText(String.valueOf(sachDTO.getGiaThue()));
+                textInputLayoutGiaThueS.addView(edtGiaThueS);
+                layout.addView(textInputLayoutGiaThueS);
 
-            TextView txtSpinner = new TextView(context);
-            txtSpinner.setText(" Loại sách");
-            txtSpinner.setTextSize(13);
-            layout.addView(txtSpinner);
-            Spinner spinnerLoaiSach = new Spinner(context);
-            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, loaiSachDAO.getListTen());
-            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinnerLoaiSach.setAdapter(spinnerAdapter);
-            layout.addView(spinnerLoaiSach);
+                TextView txtSpinner = new TextView(context);
+                txtSpinner.setText(" Loại sách:");
+                txtSpinner.setTextSize(13);
+                layout.addView(txtSpinner);
+                Spinner spinnerLoaiSach = new Spinner(context);
+                ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, loaiSachDAO.getListTen());
+                spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerLoaiSach.setAdapter(spinnerAdapter);
+                layout.addView(spinnerLoaiSach);
 
-            builder.setView(layout);
+                builder.setView(layout);
 
-            builder.setPositiveButton("Cập nhật", (dialog, which) -> {
-                String tenMoi = edtTenS.getText().toString().trim();
-                int giaThueMoi = Integer.parseInt(edtGiaThueS.getText().toString());
-                String loaiSachMoi = spinnerLoaiSach.getSelectedItem().toString();
-                if (!tenMoi.isEmpty() || !String.valueOf(giaThueMoi).isEmpty()) {
-                    sachDTO.setTenSach(tenMoi);
-                    sachDTO.setGiaThue(giaThueMoi);
-                    sachDTO.setMaLoai(loaiSachDAO.getMaLSByName(loaiSachMoi));
-                    SachDAO sachDAO1 = new SachDAO(context);
-                    boolean check = sachDAO1.updateSach(sachDTO);
-                    if (check) {
-                        Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                        notifyDataSetChanged();
+                builder.setPositiveButton("Cập nhật", (dialog, which) -> {
+                    String tenMoi = edtTenS.getText().toString().trim();
+                    int giaThueMoi = Integer.parseInt(edtGiaThueS.getText().toString());
+                    String loaiSachMoi = spinnerLoaiSach.getSelectedItem().toString();
+                    if (!tenMoi.isEmpty() || !String.valueOf(giaThueMoi).isEmpty()) {
+                        sachDTO.setTenSach(tenMoi);
+                        sachDTO.setGiaThue(giaThueMoi);
+                        sachDTO.setMaLoai(loaiSachDAO.getMaLSByName(loaiSachMoi));
+                        SachDAO sachDAO1 = new SachDAO(context);
+                        boolean check = sachDAO1.updateSach(sachDTO);
+                        if (check) {
+                            Toast.makeText(context, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                            notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(context, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(context, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Vui lòng nhập đủ các trường", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(context, "Vui lòng nhập đủ các trường", Toast.LENGTH_SHORT).show();
-                }
-            });
-            builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
+                });
+                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
 
-            AlertDialog dialog = builder.create();
-            dialog.show();
-            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.rgb(254, 230, 179)));
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.rgb(254, 230, 179)));
+
+                return true;
+            }
         });
     }
 

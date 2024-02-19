@@ -52,6 +52,10 @@ public class FragmentQLS extends Fragment {
 
         showListS();
 
+        addNewS();
+    }
+
+    private void addNewS() {
         fabAddS.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             LayoutInflater layoutInflater = getLayoutInflater();

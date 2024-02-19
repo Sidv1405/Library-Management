@@ -80,4 +80,16 @@ public class SachDAO {
         cursor.close();
         return tenLS;
     }
+
+    public ArrayList<String> getListTenS() {
+        ArrayList<String> listTenS = new ArrayList<>();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT tensach FROM SACH", null);
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                listTenS.add(cursor.getString(0));
+            }
+        }
+        cursor.close();
+        return listTenS;
+    }
 }

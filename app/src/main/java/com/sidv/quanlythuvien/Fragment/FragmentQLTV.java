@@ -47,6 +47,10 @@ public class FragmentQLTV extends Fragment {
 
         showListTV();
 
+        addNewTV();
+    }
+
+    private void addNewTV() {
         fabAddTV.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             LayoutInflater layoutInflater = getLayoutInflater();
