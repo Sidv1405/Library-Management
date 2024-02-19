@@ -26,7 +26,7 @@ import com.sidv.quanlythuvien.Fragment.FragmentQLPM;
 import com.sidv.quanlythuvien.Fragment.FragmentQLS;
 import com.sidv.quanlythuvien.Fragment.FragmentQLTV;
 import com.sidv.quanlythuvien.Fragment.FragmentTTV;
-import com.sidv.quanlythuvien.Fragment.FragmentTop10;
+import com.sidv.quanlythuvien.Fragment.FragmentTop;
 import com.sidv.quanlythuvien.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.qltv) {
                 fragment = new FragmentQLTV();
             } else if (item.getItemId() == R.id.top10) {
-                fragment = new FragmentTop10();
+                fragment = new FragmentTop();
             } else if (item.getItemId() == R.id.doanhthu) {
                 fragment = new FragmentDT();
             } else if (item.getItemId() == R.id.themnd) {
