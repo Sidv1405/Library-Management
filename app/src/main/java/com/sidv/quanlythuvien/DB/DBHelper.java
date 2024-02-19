@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
     static final String name = "PLIB";
-    static final int version = 8;
+    static final int version = 9;
 
     public DBHelper(Context context) {
         super(context, name, null, version);
@@ -57,15 +57,15 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(creaTbPhieuMuon);
 
         //inert du lieu mau
-        String insThuThu = "INSERT INTO THUTHU VALUES('tt1','Nguyen Van Teo', 'tt123'),('tt2','Nguyen Van be', 'tt125'),('tt3','Nguyen Van Can', 'tt345'),('admin','tienlttps23958', 'admin')";
+        String insThuThu = "INSERT INTO THUTHU VALUES('tt1','Thủ Thư 1', 'tt1'),('tt2','Thủ Thư 2', 'tt2'),('tt3','Thủ Thư 3', 'tt3'),('admin','admin', 'admin')";
         db.execSQL(insThuThu);
-        String insThanhVien = "INSERT INTO THANHVIEN VALUES (1, 'Tran Van Nam','2000'),(2, 'Tran van Binh','2002'),(3, 'Nguyen Thi be','1999'),(4, 'Le Thi Mai','2000')";
+        String insThanhVien = "INSERT INTO THANHVIEN VALUES (1, 'Đặng Văn Sĩ','2000'),(2, 'Lê Thu Phương','2002'),(3, 'Nguyễn Ngọc Linh','1999'),(4, 'Nguyễn Đức Anh ','2000')";
         db.execSQL(insThanhVien);
         String insLoaiSach = "INSERT INTO LOAISACH VALUES (1,'Công Nghệ Thông Tin'),(2,'Kinh Tế-chính Trị'),(3, 'Thiết kế đồ hoạ'), (4, 'Truyện trinh thám')";
         db.execSQL(insLoaiSach);
-        String insSach = "INSERT INTO SACH VALUES (1, 'Lập trình java 1', 1500, 1),(2, 'Lập trình java 2', 5500, 1),(3, 'Android cơ bản', 2000, 1),(4, 'MacLeNin', 3500, 2),(5, 'Photoshop', 2000, 3)";
+        String insSach = "INSERT INTO SACH VALUES (1, 'Lập trình java 1', 1500, 1),(2, 'Lập trình java 2', 5500, 1),(3, 'Android cơ bản', 2000, 1),(4, 'Android nâng cao', 3500, 2),(5, 'Kotlin', 2000, 3)";
         db.execSQL(insSach);
-        String insPhieuMuon = "INSERT INTO PHIEUMUON VALUES (1, 'tt1', 1, 2, 5500, '09/10/2022',1 ),(2, 'tt1', 1, 3, 4500, '09/08/2022',0 ),(3, 'tt3', 3, 4, 3500, '09/09/2022',1 )";
+        String insPhieuMuon = "INSERT INTO PHIEUMUON VALUES (1, 'tt1', 1, 2, 5500, '19/02/2024',1 ),(2, 'tt1', 1, 3, 4500, '19/02/2024',0 ),(3, 'tt3', 3, 4, 3500, '19/02/2024',1 )";
         db.execSQL(insPhieuMuon);
     }
 

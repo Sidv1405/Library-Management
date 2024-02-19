@@ -45,6 +45,7 @@
                 android:id="@+id/txtGia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:textColor="#E30C0C"
