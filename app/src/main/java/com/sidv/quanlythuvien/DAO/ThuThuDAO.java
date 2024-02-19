@@ -56,4 +56,31 @@ public class ThuThuDAO {
         }
         return false;
     }
+
+    public boolean updateMatKhauThuThu(String maTT, String matKhauMoi) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("matkhau", matKhauMoi);
+        try {
+            int rowsAffected = sqLiteDatabase.update("THUTHU", contentValues, "matt = ?", new String[]{maTT});
+            if (rowsAffected > 0) {
+                Toast.makeText(context, "Cập nhật mật khẩu thủ thư thành công", Toast.LENGTH_SHORT).show();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            Toast.makeText(context, "Cập nhật mật khẩu thủ thư thất bại: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+
+    public boolean kiemTraMatKhauThuThu(String maTT, String matKhau) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String selection = "maTT = ? AND matKhau = ?";
+        String[] selectionArgs = {maTT, matKhau};
+        Cursor cursor = db.query("ThuThu", null, selection, selectionArgs, null, null, null);
+        boolean result = cursor.getCount() > 0;
+        cursor.close();
+        return result;
+    }
 }

@@ -53,7 +53,7 @@ public class LogInActivity extends AppCompatActivity {
         thuThuDAO = new ThuThuDAO(this);
         btnLogIn.setOnClickListener(v -> {
             String username = edtUserName.getText().toString();
-            String password = edtUserName.getText().toString();
+            String password = edtPassword.getText().toString();
             boolean check = thuThuDAO.checkLogIn(username, password);
 
             if (username.isEmpty() || password.isEmpty()) {
