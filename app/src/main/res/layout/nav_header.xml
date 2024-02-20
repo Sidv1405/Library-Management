@@ -16,12 +16,11 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:cardCornerRadius="50dp">
+            android:layout_gravity="center">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:src="@drawable/menu_avatar" />
 
         </androidx.cardview.widget.CardView>

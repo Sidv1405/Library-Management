@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FPOLY SOFTWARE COMPANY"
+        android:text="Thư viện Phương Nam"
         android:textColor="@color/red"
         android:textSize="29sp"
         android:textStyle="bold" />

@@ -20,7 +20,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/menu_avatar" />
+            android:src="@drawable/ic_human" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/password"
+                        android:id="@+id/newPass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -80,7 +80,7 @@
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/rePassword"
+                        android:id="@+id/reNewPass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -100,7 +100,7 @@
                 android:layout_margin="10dp">
 
                 <Button
-                    android:id="@+id/btnXacNhanThemTV"
+                    android:id="@+id/btnXacNhanDMK"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -112,7 +112,7 @@
                     app:backgroundTint="@null" />
 
                 <Button
-                    android:id="@+id/btnHuyThemTV"
+                    android:id="@+id/btnHuyDMK"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
