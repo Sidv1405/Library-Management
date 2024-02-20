@@ -31,13 +31,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 "namsinh TEXT NOT NULL)";
         db.execSQL(createTbThanhVien);
 
-        //Tao bang Loai SachDTO
+        //Tao bang Loai Sach
         String createTbLoaiSach = " CREATE TABLE LOAISACH (" +
                 "maloai INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tenloai TEXT NOT NULL)";
         db.execSQL(createTbLoaiSach);
 
-        //Tao bang SachDTO
+        //Tao bang Sach
         String createTbSach = "CREATE TABLE SACH (" +
                 "masach INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "tensach TEXT NOT NULL," +
