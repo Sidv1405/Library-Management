@@ -57,6 +57,10 @@ public class FragmentQLPM extends Fragment {
 
         showListPM();
 
+        addNewPM();
+    }
+
+    private void addNewPM() {
         fabAddPM.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             LayoutInflater layoutInflater = getLayoutInflater();
