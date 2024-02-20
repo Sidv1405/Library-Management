@@ -35,7 +35,7 @@ public class FragmentQLLS extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_qlloaisach, container, false);
+        return inflater.inflate(R.layout.fragment_ql_loai_sach, container, false);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class FragmentQLLS extends Fragment {
             // Hiển thị dialog
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             LayoutInflater layoutInflater = getLayoutInflater();
-            View dialogView = layoutInflater.inflate(R.layout.dialog_themloaisach, null);
+            View dialogView = layoutInflater.inflate(R.layout.dialog_them_loai_sach, null);
             builder.setView(dialogView);
             AlertDialog alertDialog = builder.create();
             alertDialog.setCancelable(false);

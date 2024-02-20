@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,7 +35,7 @@ public class FragmentQLTV extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_qlthanhvien, container, false);
+        return inflater.inflate(R.layout.fragment_ql_thanh_vien, container, false);
     }
 
     @Override
@@ -54,7 +53,7 @@ public class FragmentQLTV extends Fragment {
         fabAddTV.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             LayoutInflater layoutInflater = getLayoutInflater();
-            View view1 = layoutInflater.inflate(R.layout.dialog_themthanhvien, null);
+            View view1 = layoutInflater.inflate(R.layout.dialog_them_thanh_vien, null);
             builder.setView(view1);
             AlertDialog alertDialog = builder.create();
             alertDialog.setCancelable(false);

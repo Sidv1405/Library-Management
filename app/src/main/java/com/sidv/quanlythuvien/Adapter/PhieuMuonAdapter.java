@@ -3,7 +3,6 @@ package com.sidv.quanlythuvien.Adapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -23,10 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.sidv.quanlythuvien.DAO.PhieuMuonDAO;
-import com.sidv.quanlythuvien.DAO.SachDAO;
 import com.sidv.quanlythuvien.DTO.PhieuMuonDTO;
 import com.sidv.quanlythuvien.R;
 
@@ -53,7 +48,7 @@ public class PhieuMuonAdapter extends RecyclerView.Adapter<PhieuMuonAdapter.Phie
     @Override
     public PhieuMuonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
-        View view = layoutInflater.inflate(R.layout.item_phieumuon, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_phieu_muon, parent, false);
         PhieuMuonAdapter.PhieuMuonViewHolder phieuMuonViewHolder = new PhieuMuonViewHolder(view);
 
         return phieuMuonViewHolder;

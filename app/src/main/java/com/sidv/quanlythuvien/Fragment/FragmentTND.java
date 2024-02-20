@@ -24,7 +24,7 @@ public class FragmentTND extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_themthuthu, container, false);
+        return inflater.inflate(R.layout.fragment_them_thu_thu, container, false);
     }
 
     @Override

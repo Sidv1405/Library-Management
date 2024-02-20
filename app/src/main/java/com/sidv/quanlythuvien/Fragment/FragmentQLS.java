@@ -17,7 +17,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +24,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sidv.quanlythuvien.Adapter.SachAdapter;
 import com.sidv.quanlythuvien.DAO.LoaiSachDAO;
 import com.sidv.quanlythuvien.DAO.SachDAO;
-import com.sidv.quanlythuvien.DTO.LoaiSachDTO;
 import com.sidv.quanlythuvien.DTO.SachDTO;
 import com.sidv.quanlythuvien.R;
 
@@ -41,7 +39,7 @@ public class FragmentQLS extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_qlsach, container, false);
+        return inflater.inflate(R.layout.fragment_ql_sach, container, false);
     }
 
     @Override
@@ -59,7 +57,7 @@ public class FragmentQLS extends Fragment {
         fabAddS.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             LayoutInflater layoutInflater = getLayoutInflater();
-            View view1 = layoutInflater.inflate(R.layout.dialog_themsach, null);
+            View view1 = layoutInflater.inflate(R.layout.dialog_them_sach, null);
             builder.setView(view1);
             AlertDialog alertDialog = builder.create();
             alertDialog.setCancelable(false);

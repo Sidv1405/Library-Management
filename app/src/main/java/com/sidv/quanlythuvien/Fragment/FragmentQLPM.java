@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,7 +27,6 @@ import com.sidv.quanlythuvien.DAO.PhieuMuonDAO;
 import com.sidv.quanlythuvien.DAO.SachDAO;
 import com.sidv.quanlythuvien.DAO.ThanhVienDAO;
 import com.sidv.quanlythuvien.DTO.PhieuMuonDTO;
-import com.sidv.quanlythuvien.DTO.SachDTO;
 import com.sidv.quanlythuvien.R;
 
 import java.text.ParseException;
@@ -49,7 +46,7 @@ public class FragmentQLPM extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_qlphieumuon, container, false);
+        return inflater.inflate(R.layout.fragment_ql_phieu_muon, container, false);
     }
 
     @Override
@@ -63,7 +60,7 @@ public class FragmentQLPM extends Fragment {
         fabAddPM.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             LayoutInflater layoutInflater = getLayoutInflater();
-            View view1 = layoutInflater.inflate(R.layout.dialog_themphieumuon, null);
+            View view1 = layoutInflater.inflate(R.layout.dialog_them_phieu_muon, null);
             builder.setView(view1);
             AlertDialog alertDialog = builder.create();
             alertDialog.setCancelable(false);

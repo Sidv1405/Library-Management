@@ -9,7 +9,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -43,7 +42,7 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.Than
     @Override
     public ThanhVienViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
-        View view = layoutInflater.inflate(R.layout.item_thanhvien, parent, false);
+        View view = layoutInflater.inflate(R.layout.item_thanh_vien, parent, false);
         ThanhVienViewHolder thanhVienViewHolder = new ThanhVienViewHolder(view);
 
         return thanhVienViewHolder;
