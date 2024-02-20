@@ -48,6 +48,10 @@ public class FragmentDT extends Fragment {
 
         chonDenNgay();
 
+        tinhDoanhThu();
+    }
+
+    private void tinhDoanhThu() {
         btnTinhDoanhThu.setOnClickListener(view1 -> {
             doanhThuDAO = new DoanhThuDAO(getContext());
             if (txtDenNgay.getText().toString().isEmpty() || txtTuNgay.getText().toString().isEmpty()) {
