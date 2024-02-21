@@ -82,7 +82,7 @@ public class LoaiSachDAO {
 
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT maloai FROM LOAISACH WHERE tenloai = ?", new String[]{tenLoai});
         if (cursor.moveToFirst()) {
-            maLS = cursor.getInt(cursor.getInt(0));
+            maLS = cursor.getInt(0);
         }
         cursor.close();
 

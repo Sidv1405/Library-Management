@@ -71,16 +71,15 @@ public class FragmentQLS extends Fragment {
             Button btnHuyThemS = view1.findViewById(R.id.btnHuyThemS);
 
             LoaiSachDAO loaiSachDAO = new LoaiSachDAO(getContext());
-            ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinnerS.getAdapter();
-            ArrayAdapter<String> newAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, loaiSachDAO.getListTen());
-            newAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinnerS.setAdapter(newAdapter);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, loaiSachDAO.getListTen());
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerS.setAdapter(adapter);
 
             btnXacNhanThemS.setOnClickListener(v1 -> {
                 String tenS = edtTenS.getText().toString();
                 String giaThueSStr = edtGiaThueS.getText().toString();
 
-                if (tenS.isEmpty() || TextUtils.isEmpty(giaThueSStr)) {
+                if (tenS.isEmpty() || giaThueSStr.isEmpty()) {
                     Toast.makeText(getContext(), "Hãy điền đủ các trường", Toast.LENGTH_SHORT).show();
                 } else if (!TextUtils.isDigitsOnly(giaThueSStr)) {
                     Toast.makeText(getContext(), "Giá thuê chỉ được nhập số", Toast.LENGTH_SHORT).show();
@@ -88,6 +87,7 @@ public class FragmentQLS extends Fragment {
                     int giaThueS = Integer.parseInt(giaThueSStr);
                     int maLS = loaiSachDAO.getMaLSByName(spinnerS.getSelectedItem().toString());
 
+                    sachDAO = new SachDAO(getContext());
                     SachDTO sachDTO = new SachDTO(tenS, giaThueS, maLS);
                     boolean check = sachDAO.createSach(sachDTO);
                     if (check) {
@@ -99,6 +99,7 @@ public class FragmentQLS extends Fragment {
                     }
                 }
             });
+
             btnHuyThemS.setOnClickListener(v1 -> {
                 alertDialog.dismiss();
             });
